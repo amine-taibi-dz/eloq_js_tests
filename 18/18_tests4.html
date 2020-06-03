@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Tests4</title>
+  </head>
+  <body>
+    <input type="text" maxlength="25" /> length: <span id="length">0</span>
+    <script>
+      let text = document.querySelector("input");
+      let output = document.querySelector("#length");
+      text.addEventListener("input", () => {
+        output.textContent = "reste: " + (text.maxLength - text.value.length);
+      });
+    </script>
+  </body>
+</html>

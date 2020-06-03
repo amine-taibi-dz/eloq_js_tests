@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>chap15_5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      let squareWorker = new Worker("code/squareworker.js");
+      squareWorker.addEventListener("message", (event) => {
+        console.log("The worker responded:", event.data);
+      });
+      squareWorker.postMessage(10);
+      squareWorker.postMessage(25);
+    </script>
+  </body>
+</html>

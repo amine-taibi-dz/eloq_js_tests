@@ -1,0 +1,16 @@
+{
+  "name": "chap11",
+  "version": "1.0.0",
+  "description": "async",
+  "main": "11_async.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "async",
+    "callback",
+    "promise"
+  ],
+  "author": "ataibi",
+  "license": "ISC"
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <p>One</p>
+    <p>Two</p>
+    <p>Three</p>
+    <script>
+      let paragraphs = document.body.getElementsByTagName("p");
+      document.body.insertBefore(paragraphs[2], paragraphs[0]);
+
+      let arrayish = { 0: "one", 1: "two", length: 2 };
+      let array = Array.from(arrayish);
+      console.log(array.map((s) => s.toUpperCase()));
+      // → ["ONE", "TWO"]
+    </script>
+
+    <p>
+      The <img src="img/cat.png" alt="Cat" /> in the
+      <img src="img/hat.png" alt="Hat" />.
+    </p>
+    <p><button onclick="replaceImages()">Replace</button></p>
+    <script>
+      function replaceImages() {
+        let images = document.body.getElementsByTagName("img");
+        for (let i = images.length - 1; i >= 0; i--) {
+          let image = images[i];
+          if (image.alt) {
+            let text = document.createTextNode(image.alt);
+            image.parentNode.replaceChild(text, image);
+          }
+        }
+      }
+    </script>
+
+    <blockquote id="quote">
+      No book can ever be finished. While working on it we learn just enough to
+      find it immature the moment we turn away from it.
+    </blockquote>
+    <script>
+      function elt(type, ...children) {
+        let node = document.createElement(type);
+        for (let child of children) {
+          if (typeof child != "string") node.appendChild(child);
+          else node.appendChild(document.createTextNode(child));
+        }
+        return node;
+      }
+      document
+        .getElementById("quote")
+        .appendChild(
+          elt(
+            "footer",
+            "—",
+            elt("strong", "Karl Popper"),
+            ", preface to the second edition of ",
+            elt("em", "The Open Society and Its Enemies"),
+            ", 1950"
+          )
+        );
+    </script>
+
+    <p data-classified="secret">The launch code is 00000000.</p>
+    <p data-classified="unclassified">I have two feet.</p>
+    <script>
+      let paras = document.body.getElementsByTagName("p");
+      for (let para of Array.from(paras)) {
+        if (para.getAttribute("data-classified") == "secret") {
+          para.remove();
+        }
+      }
+    </script>
+
+    <p style="border: 3px solid red;">
+      I'm boxed in
+    </p>
+    <script>
+      let para = document.body.getElementsByTagName("p")[0];
+      console.log("clientHeight:", para.clientHeight);
+      console.log("offsetHeight:", para.offsetHeight);
+    </script>
+  </body>
+</html>

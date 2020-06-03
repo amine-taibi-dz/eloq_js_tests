@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Exo 03 game of life</title>
+    <style>
+      input[type="checkbox"] {
+        margin: 1px;
+        border: 1px solid red;
+        background-color: blueviolet;
+        width: 15px;
+        height: 15px;
+      }
+      input[type="checkbox"]:checked {
+        content: "\00f046";
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid" style="border: 1px solid blue;"></div>
+    <button id="next">Next generation</button>
+
+    <script>
+      let world = [];
+      let lines = 30,
+        cols = 30;
+
+      for (let i = 0; i < lines; i++) {
+        world[i] = [];
+        for (let j = 0; j < cols; j++) {
+          world[i][j] = Math.random() > 0.1 ? false : true;
+        }
+      }
+      function display() {
+        let grid1 = document.getElementById("grid");
+        grid1.innerHTML = "";
+        for (let i = 0; i < lines; i++) {
+          for (let j = 0; j < cols; j++) {
+            let cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.checked = world[i][j];
+            cb.addEventListener("change", (evt) => {
+              world[i][j] = !world[i][j];
+            });
+            grid1.appendChild(cb);
+          }
+          grid1.appendChild(document.createElement("br"));
+        }
+      }
+      display();
+      async function next() {
+        world = recalc(world);
+        display();
+      }
+
+      document.getElementById("next").addEventListener("click", next);
+      function recalc(world) {
+        let newWorld = [];
+        for (let i = 0; i < lines; i++) {
+          newWorld[i] = [];
+          for (let j = 0; j < cols; j++) {
+            let nbVoisLives = calcNbVoisinLive(world, i, j);
+
+            newWorld[i][j] = world[i][j];
+            if (world[i][j]) {
+              // Live ==>  <2  or >3 become false
+              // Live ==>  ==2  or ==3 become true
+              if (nbVoisLives == 2 || nbVoisLives == 3) {
+                newWorld[i][j] = true;
+              } else if (nbVoisLives < 2 || nbVoisLives > 3) {
+                newWorld[i][j] = false;
+              }
+            } else {
+              // Die ==> == 3 become True
+              if (nbVoisLives == 3) {
+                newWorld[i][j] = true;
+              }
+            }
+          }
+        }
+        return newWorld;
+      }
+      function calcNbVoisinLive(world, x, y) {
+        let count = 0;
+        for (let i = -1; i < 2; i++) {
+          for (let j = -1; j < 2; j++) {
+            if (i == j && i == 0) {
+              continue;
+            }
+            if (world[(x + i + lines) % lines][(y + j + cols) % cols]) {
+              count++;
+            }
+          }
+        }
+        return count;
+      }
+      setInterval(next, 1000);
+      // Your code here.
+    </script>
+  </body>
+</html>

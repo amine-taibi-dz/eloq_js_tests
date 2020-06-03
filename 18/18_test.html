@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Tests0</title>
+  </head>
+  <body>
+    <input type="text" />
+    <select name="sel" id="sel12" autofocus>
+      <option value="1">11</option>
+      <option value="2">12</option>
+      <option value="3">13</option>
+      <option value="4">14</option>
+    </select>
+    <script>
+      console.log("focus to ->" + document.activeElement.tagName);
+      document.querySelector("input").focus();
+      console.log("focus to ->" + document.activeElement.tagName);
+      document.querySelector("input").value = "FOCUSED!!!!";
+      // → INPUT
+      document.querySelector("input").blur();
+      console.log("focus to ->" + document.activeElement.tagName);
+      // → BODY
+    </script>
+  </body>
+</html>

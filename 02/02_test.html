@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chapter2 </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+
+<body>
+    <script>
+        switch (prompt("What is the weather like?")) {
+            case "rainy":
+                console.log("Remember to bring an umbrella.");
+                break;
+            case "sunny":
+                console.log("Dress lightly.");
+            case "cloudy":
+                console.log("Go outside.");
+                break;
+            default:
+                console.log("Unknown weather type!");
+                break;
+        }
+
+
+        let yourName;
+        do {
+            yourName = prompt("Who are you?");
+        } while (!yourName);
+        console.log(yourName);
+        let num = Number(prompt("Pick a number", 42));
+        if (num < 10) {
+            console.log("Small");
+        } else if (num < 100) {
+            console.log("Medium");
+        } else {
+            console.log("Large");
+        }
+
+
+        let theNumber1 = Number(prompt("Pick a number"));
+        if (!Number.isNaN(theNumber1)) {
+            console.log("Your number has the square " + theNumber1 * theNumber1);
+        } else {
+            console.log("Hey. Why didn't you give me a number?");
+        }
+        let theNumber = Number(prompt("Pick a number"));
+        console.log("Your number has the square  " + theNumber * theNumber);
+        let v = prompt("Enter passcode");
+        alert(v);
+        console.error(v);
+    </script>
+
+</body>
+
+</html>

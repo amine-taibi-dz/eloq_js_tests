@@ -1,0 +1,26 @@
+{
+  "name": "chap20",
+  "version": "1.0.0",
+  "description": "node js starts",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Amine TAIBI",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "core-js": "^3.6.5",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "http": "0.0.1-security",
+    "ini": "^1.3.5",
+    "mime": "^2.2.0",
+    "morgan": "^1.10.0",
+    "require": "^2.4.20"
+  }
+}

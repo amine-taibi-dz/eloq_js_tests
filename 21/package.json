@@ -1,0 +1,19 @@
+{
+  "name": "skill-share",
+  "version": "1.0.0",
+  "description": "test server with node and client",
+  "main": "sk_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "router"
+  ],
+  "author": "Amine TAIBI",
+  "license": "MIT",
+  "devDependencies": {
+    "ecstatic": "^4.1.4",
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Exo 01</title>
+  </head>
+  <body>
+    <script>
+      fetch("https://eloquentjavascript.net/author", {
+        headers: { accept: "text/plain" },
+      })
+        .then((resp) => resp.text())
+        .then((text) => console.log(text));
+
+      fetch("https://eloquentjavascript.net/author", {
+        headers: { accept: "text/html" },
+      })
+        .then((resp) => resp.text())
+        .then((text) => console.error(text));
+
+      fetch("https://eloquentjavascript.net/author", {
+        headers: { accept: "application/json" },
+      })
+        .then((resp) => resp.text())
+        .then((text) => console.error(text));
+
+      fetch("https://eloquentjavascript.net/author", {
+        headers: { accept: "application/rainbows+unicorns" },
+      })
+        .then((resp) => resp.text())
+        .then((text) => console.warn(text));
+      //application/json
+
+      const url = "https://eloquentjavascript.net/author";
+      const types = [
+        "text/plain",
+        "text/html",
+        "application/json",
+        "application/rainbows+unicorns",
+      ];
+
+      async function showTypes() {
+        for (let type of types) {
+          let resp = await fetch(url, { headers: { accept: type } });
+          console.log(`${type}: ${await resp.text()}\n`);
+        }
+      }
+
+      showTypes();
+    </script>
+  </body>
+</html>

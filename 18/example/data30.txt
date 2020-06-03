@@ -1,0 +1,3 @@
+merci
+This is the content of data.txt
+help

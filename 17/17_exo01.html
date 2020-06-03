@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SHAPES</title>
+  </head>
+  <body>
+    <div>trapezoid</div>
+    <canvas id="canvas1" width="200" height="200"></canvas>
+    <script>
+      {
+        let ctx = document.querySelector("#canvas1").getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(250, 160);
+        ctx.lineTo(50, 160);
+        ctx.closePath();
+        ctx.stroke();
+      }
+    </script>
+    <div>Diamond</div>
+    <canvas
+      id="canvas2"
+      width="200"
+      height="200"
+      style="border: 1px solid blue;"
+    ></canvas>
+    <script>
+      {
+        let ctx1 = document.querySelector("#canvas2").getContext("2d");
+        ctx1.translate(150, 150);
+        ctx1.rotate(-Math.PI / 4);
+        ctx1.fillStyle = "red";
+        //context.ellipse(100, 200, 150, 40);
+        ctx1.fillRect(10, 10, 100, 100);
+
+        //ctx1.fillRect(50, 50, 100, 100);
+      }
+    </script>
+
+    <div>A zigzagging line</div>
+    <canvas
+      id="canvas3"
+      width="200"
+      height="200"
+      style="border: 1px solid blue;"
+    ></canvas>
+    <script>
+      {
+        let ctx = document.querySelector("#canvas3").getContext("2d");
+        let mid = 10;
+        let xStart = 10;
+        let yStart = 10;
+        let xEnd = 100;
+        ctx.beginPath();
+        ctx.moveTo(xStart, yStart);
+        for (let i = 0; i < 15; i++) {
+          ctx.lineTo(xEnd, yStart + mid);
+          let temp = xStart;
+          xStart = xEnd;
+          xEnd = temp;
+
+          yStart = yStart + mid;
+        }
+        //ctx.closePath();
+        ctx.stroke();
+        //ctx1.fillRect(50, 50, 100, 100);
+      }
+    </script>
+
+    <div>A spiral made up of 100 straight line segments</div>
+    <canvas
+      id="canvas4"
+      width="800"
+      height="400"
+      style="border: 1px solid blue;"
+    ></canvas>
+    <script>
+      {
+        let ctx = document.querySelector("#canvas4").getContext("2d");
+        function drawLine(xStart, yStart, step, angle) {
+          if (step > 15) return;
+          ctx.lineTo(xStart - step, yStart - step);
+          ctx.translate(xStart - step, yStart - step);
+          ctx.rotate(-angle);
+          drawLine(xStart - step, yStart - step, step * 1.05, angle);
+        }
+        let step = 10;
+        let xStart = 200;
+        let yStart = 200;
+        let fact = 1.1;
+        let angle = 60;
+        ///ctx.beginPath();
+        //ctx.moveTo(xStart, yStart);
+        //drawLine(xStart, yStart, step, angle);
+        //ctx.closePath();
+        //ctx.stroke();
+        //ctx1.fillRect(50, 50, 100, 100);
+        function spiral(x, y) {
+          let radius = 120,
+            xCenter = x + radius,
+            yCenter = y + radius;
+          ctx.beginPath();
+          ctx.moveTo(xCenter, yCenter);
+          for (let i = 0; i < 300; i++) {
+            let angle = (i * Math.PI) / 30;
+            let dist = (radius * i) / 300;
+            ctx.lineTo(
+              xCenter + Math.cos(angle) * dist,
+              yCenter + Math.sin(angle) * dist
+            );
+          }
+          ctx.stroke();
+        }
+        spiral(100, 100);
+
+        function star(x, y) {
+          let radius = 150,
+            xCenter = x + radius,
+            yCenter = y + radius;
+          ctx.beginPath();
+          ctx.moveTo(xCenter + radius, yCenter);
+          for (let i = 1; i <= 14; i++) {
+            let angle = (i * Math.PI) / 7;
+            ctx.quadraticCurveTo(
+              xCenter,
+              yCenter,
+              xCenter + Math.cos(angle) * radius,
+              yCenter + Math.sin(angle) * radius
+            );
+          }
+          ctx.fillStyle = "gold";
+          ctx.fill();
+        }
+        star(300, 20);
+      }
+    </script>
+  </body>
+</html>

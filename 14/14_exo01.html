@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    { name: "Kilimanjaro", height: 5895, place: "Tanzania" },
+    { name: "Everest", height: 8848, place: "Nepal" },
+    { name: "Mount Fuji", height: 3776, place: "Japan" },
+    { name: "Vaalserberg", height: 323, place: "Netherlands" },
+    { name: "Denali", height: 6168, place: "United States" },
+    { name: "Popocatepetl", height: 5465, place: "Mexico" },
+    { name: "Mont Blanc", height: 4808, place: "Italy/France" },
+  ];
+
+  let myDiv = document.getElementById("mountains");
+  //let table = myDiv.createElement("table");
+  createTable(document, myDiv, MOUNTAINS);
+  function createTable(root, parent, dataArray) {
+    let table = root.createElement("table");
+    createHeader(root, table, dataArray);
+    for (const line of dataArray) {
+      createLine(root, table, line);
+    }
+    parent.appendChild(table);
+  }
+  function createHeader(root, parent, dataArray) {
+    let props = Object.getOwnPropertyNames(dataArray[0]);
+    let tr = root.createElement("tr");
+
+    for (let index = 0; index < props.length; index++) {
+      const element = props[index];
+      let th = root.createElement("th");
+      let text = root.createTextNode(element);
+      th.appendChild(text);
+      tr.appendChild(th);
+    }
+    parent.appendChild(tr);
+  }
+  function createLine(root, parent, line) {
+    let props = Object.getOwnPropertyNames(line);
+    let tr = root.createElement("tr");
+
+    for (let index = 0; index < props.length; index++) {
+      const prop = props[index];
+      let td = root.createElement("td");
+
+      let text = root.createTextNode(line[prop]);
+      td.appendChild(text);
+      /*if (/^\d+$/.test(line[prop])) {
+        td.style.textAlign = "right";
+      }
+      */
+      if (typeof line[prop] == "number") {
+        td.style.textAlign = "right";
+      }
+      tr.appendChild(td);
+    }
+    parent.appendChild(tr);
+  }
+
+  // Your code here
+</script>

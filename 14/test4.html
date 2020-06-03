@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 4px; /* rounds corners */
+        background: rgb(0, 0, 255);
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="text-align: center;">
+      <img src="img/hat.png" style="position: relative;" />
+    </p>
+
+    <script>
+      let cat = document.querySelector("img");
+      let angle = 0;
+      function animate(time, lastTime) {
+        if (lastTime != null) {
+          angle += (time - lastTime) * 0.001;
+        }
+        cat.style.top = Math.sin(2 * angle) * 60 + "px";
+        cat.style.left = Math.cos(3 * angle) * 60 + "px";
+        let p = document.querySelector("p");
+        let dot = document.createElement("div");
+        dot.className = "dot";
+        dot.style.left = cat.style.left - 4 + "px";
+        dot.style.top = cat.style.top - 4 + "px";
+        dot.style.position = "relative";
+        p.appendChild(dot);
+        requestAnimationFrame((newTime) => animate(newTime, time));
+      }
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>

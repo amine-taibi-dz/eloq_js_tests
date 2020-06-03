@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My home page</title>
+  </head>
+  <body>
+    <a href="https://developer.mozilla.org/" id="mdn">MDN</a>
+    <script>
+      let link = document.querySelector("#mdn");
+      link.addEventListener("click", (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log("Nope.");
+      });
+    </script>
+    <p style="color: burlywood;">
+      Click this document to activate the handler.
+    </p>
+    <button id="button1">Act-once button</button>
+    <script>
+      let but1 = document.querySelector("#button1");
+      function once() {
+        console.log("Done.");
+        but1.removeEventListener("click", once);
+      }
+      but1.addEventListener("click", once);
+    </script>
+    <script>
+      window.addEventListener("click", () => {
+        console.log("You knocked global?");
+      });
+    </script>
+    <button id="button2">Click me</button>
+    <p>No handler here.</p>
+    <script>
+      let button = document.querySelector("#button2");
+      button.addEventListener("click", (e) => {
+        console.log("Button clicked " + e.target.id);
+      });
+    </script>
+
+    <button id="btn1">Click me any way you want</button>
+    <script>
+      let btn1 = document.querySelector("#btn1");
+      btn1.addEventListener("mousedown", (event) => {
+        if (event.button == 0) {
+          console.log("Left button");
+        } else if (event.button == 1) {
+          console.log("Middle button");
+        } else if (event.button == 2) {
+          console.log("Right button");
+        }
+      });
+    </script>
+
+    <p id="p13">A paragraph with a <button id="b13">button</button>.</p>
+    <script>
+      let para = document.querySelector("#p13");
+      let button3 = document.querySelector("#b13");
+      para.addEventListener("mousedown", () => {
+        console.log("Handler for paragraph.");
+      });
+      button3.addEventListener("mousedown", (event) => {
+        console.log("Handler for button3.");
+        if (event.button == 2) event.stopPropagation();
+      });
+    </script>
+    <div style="display: flex;">
+      <div
+        style="width: 40px; border: blue solid 2px; margin: 3px; padding: 5px;"
+      >
+        A
+      </div>
+      <div
+        style="width: 40px; border: blue solid 2px; margin: 3px; padding: 5px;"
+      >
+        B
+      </div>
+      <div
+        style="width: 40px; border: blue solid 2px; margin: 3px; padding: 5px;"
+      >
+        C
+      </div>
+    </div>
+    <script>
+      document.body.addEventListener("click", (event) => {
+        if (event.target.nodeName == "DIV") {
+          console.log("Clicked", event.target.textContent);
+        }
+      });
+    </script>
+    <p>This page turns violet when you hold the V key.</p>
+    <script>
+      window.addEventListener("keydown", (event) => {
+        if (event.key == "v") {
+          document.body.style.background = "violet";
+        }
+        if (event.key == "b") {
+          document.body.style.background = "blue";
+        }
+        if (event.key == "y") {
+          document.body.style.background = "yellow";
+        }
+        if (event.key == "r") {
+          document.body.style.background = "red";
+        }
+      });
+      window.addEventListener("keyup", (event) => {
+        // if (event.key == "v") {
+        document.body.style.background = "";
+        //}
+      });
+    </script>
+
+    <p>Press Control-Space to continue.</p>
+    <script>
+      window.addEventListener("keydown", (event) => {
+        if (event.key == " " && event.ctrlKey) {
+          console.log("Continuing!");
+        } else if (event.key == " " && event.altKey) {
+          console.log("Continuing <ALT>!");
+        }
+        if (event.key == " " && event.shiftKey) {
+          console.log("Continuing <SHIFT>!");
+        }
+      });
+    </script>
+  </body>
+</html>

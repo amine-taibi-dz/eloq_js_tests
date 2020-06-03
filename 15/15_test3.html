@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>chap15_2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      #progress {
+        border-bottom: 2px solid blue;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress"></div>
+    <script>
+      // Create some content
+
+      document.body.appendChild(
+        document.createTextNode("Lorem ipsum dolor sit amet. ".repeat(1000))
+      );
+      let bar = document.querySelector("#progress");
+      window.addEventListener("scroll", () => {
+        let max = document.body.scrollHeight - innerHeight;
+        bar.style.width = `${(pageYOffset / max) * 100}%`;
+      });
+    </script>
+  </body>
+</html>

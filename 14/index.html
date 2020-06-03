@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My home page</title>
+  </head>
+  <body>
+    <h1>My home page</h1>
+    <p>Hello, I am Marijn and this is my home page.</p>
+    <p>
+      I also wrote a book! Read it
+      <a href="http://eloquentjavascript.net">here</a>.
+    </p>
+    <script>
+      function talksAbout(node, string) {
+        if (node.nodeType == Node.TEXT_NODE) {
+          return node.nodeValue.indexOf(string) > -1;
+        } else if (node.nodeType == Node.ELEMENT_NODE) {
+          for (let i = 0; i < node.childNodes.length; i++) {
+            if (talksAbout(node.childNodes[i], string)) {
+              return true;
+            }
+          }
+          return false;
+        }
+      }
+      console.log(
+        `is there b.o.o.k: ${
+          talksAbout(document.body, "b" + "o" + "o" + "k") ? "Yes" : "No"
+        }`
+      );
+      let link = document.body.getElementsByTagName("a")[0];
+      console.error("!!! " + link.href);
+      // → true
+    </script>
+    <p>My ostrich Gertrude:</p>
+    <p><img id="gertrude" src="img/ostrich.png" /></p>
+    <script>
+      let ostrich = document.getElementById("gertrude");
+      console.log(ostrich.src);
+    </script>
+  </body>
+</html>

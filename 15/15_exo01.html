@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Balooon</title>
+  </head>
+  <body>
+    <p style="font-size: 16px;">🎈</p>
+
+    <script>
+      let ball = document.querySelector("p");
+      window.addEventListener("keydown", boom);
+      function boom(event) {
+        event.preventDefault();
+        let fs = ball.style.fontSize;
+        let val = parseInt(fs);
+        console.log(fs);
+        if (event.key == "ArrowDown") {
+          console.log(event.key);
+          val = Math.max(Math.round(val * 0.9), 10);
+        } else if (event.key == "ArrowUp") {
+          val = Math.round(val * 1.1);
+          if (val > 70) {
+            ball.textContent = "💥";
+            window.removeEventListener("keydown", boom);
+          }
+        }
+        ball.style.fontSize = val + "px";
+      }
+    </script>
+  </body>
+</html>

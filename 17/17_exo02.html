@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Pie chart</title>
+  </head>
+  <body>
+    <div>Chart</div>
+    <canvas id="canvas8" width="400" height="400"></canvas>
+    <script>
+      const results = [
+        { name: "Satisfied", count: 1043, color: "lightblue" },
+        { name: "Neutral", count: 563, color: "lightgreen" },
+        { name: "Unsatisfied", count: 510, color: "pink" },
+        { name: "No comment", count: 175, color: "silver" },
+      ];
+      let cx8 = document.querySelector("#canvas8").getContext("2d");
+      let total = results.reduce((sum, { count }) => sum + count, 0);
+      // Start at the top
+      let currentAngle = -0.5 * Math.PI;
+      cx8.font = "15px sans-serif";
+      cx8.fillStyle = "red";
+      for (let result of results) {
+        let sliceAngle = (result.count / total) * 2 * Math.PI;
+        cx8.beginPath();
+        let centerX = 150,
+          centerY = 150;
+        // from current angle, clockwise by slice's angle
+
+        //cx7.fillText("I can draw text, too!", 10, 50);
+
+        let radius = 100;
+        let startAng = currentAngle;
+        let endAng = currentAngle + sliceAngle;
+        let midAng = startAng + (endAng - startAng) / 2;
+        let posX = centerX + radius * 1.1 * Math.cos(midAng);
+        let posY = centerY + radius * 0.8 * Math.sin(midAng);
+        //cx8.fillText(result.name, posX, posY);
+
+        cx8.arc(centerX, centerY, radius, startAng, endAng);
+
+        cx8.lineTo(centerX, centerY);
+        cx8.fillStyle = result.color;
+        cx8.fill();
+        cx8.fillStyle = "red";
+        cx8.fillText(result.name, posX, posY);
+        currentAngle += sliceAngle;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Tests2</title>
+  </head>
+  <body>
+    <form action="example/submit.html">
+      Value: <input type="text" name="value" />
+      <button type="submit">Save</button>
+    </form>
+    <script>
+      let form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        console.log("Saving value", form.elements.value.value);
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>

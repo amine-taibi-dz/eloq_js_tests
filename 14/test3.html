@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+      strong {
+        font-style: italic;
+        color: gray;
+        font-size: 3em;
+      }
+
+      .subtle {
+        color: gray;
+        font-size: 80%;
+      }
+      #header {
+        background: blue;
+        color: white;
+      }
+      /* p elements with id main and with classes a and b */
+      p#main.a.b {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Now <strong>strong text</strong> is italic and gray.</p>
+
+    <p>And if you go chasing <span class="animal">rabbits</span></p>
+    <p>And you know you're going to fall</p>
+    <p>
+      Tell 'em a
+      <span class="character"
+        >hookah smoking <span class="animal">caterpillar</span></span
+      >
+    </p>
+    <p>Has given you the call</p>
+    <script>
+      function count(selector) {
+        return document.querySelectorAll(selector).length;
+      }
+      console.log(count("p")); // All <p> elements
+      // → 4
+      console.log(count(".animal")); // Class animal
+      // → 2
+      console.log(count("p .animal")); // Animal inside of <p>
+      // → 2
+      console.log(count("p > .animal")); // Direct child of <p>
+      // → 1
+    </script>
+  </body>
+</html>
